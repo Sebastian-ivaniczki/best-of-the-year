@@ -85,7 +85,7 @@ public class Mycontroller {
 		}  
 		
 		@GetMapping("/songs/{id}")
-		public String getSongDetail(Model model, @PathVariable("id") long id) {
+		public String getSingleSong(Model model, @PathVariable("id") long id) {
 			
 			List<Song> songs = getBestSongs();
 			String song = null;
@@ -100,5 +100,23 @@ public class Mycontroller {
 			model.addAttribute("song", song);
 			
 			return "singlesong";
+		}
+		
+		@GetMapping("/movies/{id}")
+		public String getSingleMovie(Model model, @PathVariable("id") long id) {
+			
+			List<Movie> movies = getBestMovies();
+			String movie = null;
+			
+			for(int i = 0; i<movies.size(); i++) {
+				if(id == movies.get(i).getId()) {
+					movie = movies.get(i).getName();
+					break;
+				}
+			}
+			
+			model.addAttribute("movie", movie);
+			
+			return "singlemovie";
 		}
 }

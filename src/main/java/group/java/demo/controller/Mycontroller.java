@@ -1,19 +1,23 @@
 package group.java.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
 
 @Controller
 @RequestMapping("/")
 public class Mycontroller {
 	
-	@GetMapping("/")
-	@ResponseBody
-	public String sayHello() {
-		
-		return "<h1>Prova!</h1>";
-	}
+	 @GetMapping("/home")
+	    public String getBestOfYear(Model model) {
+	        String yourName = "Sebastian"; 
+
+	        model.addAttribute("name", yourName);
+	        return "index";
+	    }
 	
 }

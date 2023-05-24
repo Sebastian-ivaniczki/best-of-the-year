@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -82,4 +83,22 @@ public class Mycontroller {
 			
 			return "songs";
 		}  
+		
+		@GetMapping("/songs/{id}")
+		public String getSongDetail(Model model, @PathVariable("id") long id) {
+			
+			List<Song> songs = getBestSongs();
+			String song = null;
+			
+			for(int i = 0; i<songs.size(); i++) {
+				if(id == songs.get(i).getId()) {
+					song = songs.get(i).getName();
+					break;
+				}
+			}
+			
+			model.addAttribute("song", song);
+			
+			return "singlesong";
+		}
 }

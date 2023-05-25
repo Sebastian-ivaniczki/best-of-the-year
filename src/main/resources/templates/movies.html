@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
+    <title>Movies</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
-	<body>
-		 
-		 	
-				<h1>Movie list:</h1>
-			<p th:text="${moviesList}"></p>
-		
-	</body>
+<body>
+    <div class="container">
+        <h1>Movies</h1>
+        <ul>
+            <li th:each="movie : ${movies}">
+                <a th:href="@{/movies/{id}(id=${movie.id})}" th:text="${movie.name}"></a>
+            </li>
+        </ul>
+        <a href="/" class="btn btn-primary">Home</a>
+    </div>
+</body>
 </html>
